@@ -8,7 +8,7 @@ module.exports = function toReadable (number) {
       5:'five',
       6:'six',
       7:'seven',
-      8:'eigth',
+      8:'eight',
       9:'nine',
       11:'eleven',
       12:'twelve',
@@ -22,10 +22,11 @@ module.exports = function toReadable (number) {
 }
 
 const dec2={
+    0:'zero',
     1:'ten',
     2:'twenty',
     3:'thirty',
-    4:'fourty',
+    4:'forty',
     5:'fify',
     6:'sixty',
     7:'seventy',
@@ -33,19 +34,22 @@ const dec2={
     9:'ninety',
 }    
 
-let frst=number % 10;
-let sec=Math.floor(number/10);
+var frst=number % 10;
+var sec=Math.floor(number/10);
+var k=number/100;
+var j= Math.floor(number/100);
 if(number<20){
     return dec[number];
 }
-else if(20<number<100){   
+else if(number>=20 && number<100){   
 	if(frst==0){
 		return dec2[sec]; }
 	else{
 		return dec2[sec]+' '+dec[frst]; }}
 
 else if(number%100==0){
-	let k=number/10;
-	return dec[k]+' hundred';
+	return dec[k]+' hundred';}
+else{
+	return dec[j]+' hunderd ' + toReadable(number%100);
 }
 }
